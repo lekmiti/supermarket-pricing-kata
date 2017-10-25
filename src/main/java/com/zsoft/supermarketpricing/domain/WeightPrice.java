@@ -4,7 +4,7 @@ public class WeightPrice extends Price {
 
     private final WeightUnit unit;
 
-    public WeightPrice(double value, WeightUnit unit) {
+    public WeightPrice(Float value, WeightUnit unit) {
         super(value);
         this.unit = unit;
     }

@@ -1,6 +1,5 @@
 package com.zsoft.supermarketpricing.service;
 
-import com.zsoft.supermarketpricing.domain.WeightUnit;
 import com.zsoft.supermarketpricing.exception.IllegalConversionException;
 import org.junit.Test;
 
@@ -8,7 +7,7 @@ import java.util.function.Function;
 
 import static com.zsoft.supermarketpricing.domain.WeightUnit.OUNCE;
 import static com.zsoft.supermarketpricing.domain.WeightUnit.POUND;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UnitServiceTest {
 

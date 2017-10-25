@@ -2,7 +2,7 @@ package com.zsoft.supermarketpricing.domain;
 
 public class UnitPrice extends Price {
 
-    public UnitPrice(double value) {
+    public UnitPrice(Float value) {
         super(value);
     }
 }

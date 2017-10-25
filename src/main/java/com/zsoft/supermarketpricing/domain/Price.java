@@ -5,13 +5,13 @@ public abstract class Price {
     /**
      * The price value in dollars
      */
-    private final double value;
+    private final Float value;
 
-    public Price(double value) {
+    public Price(Float value) {
         this.value = value;
     }
 
-    public double getValue() {
+    public Float getValue() {
         return value;
     }
 
