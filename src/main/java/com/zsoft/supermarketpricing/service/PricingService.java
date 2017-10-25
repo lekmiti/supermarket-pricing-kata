@@ -2,6 +2,10 @@ package com.zsoft.supermarketpricing.service;
 
 import com.zsoft.supermarketpricing.domain.UnitPrice;
 import com.zsoft.supermarketpricing.domain.WeightPrice;
+import com.zsoft.supermarketpricing.domain.WeightUnit;
+import com.zsoft.supermarketpricing.exception.IllegalConversionException;
+
+import static com.zsoft.supermarketpricing.service.UnitService.getConvertor;
 
 public class PricingService {
 
@@ -13,8 +17,8 @@ public class PricingService {
      * @param unit     the unit of the quantity
      * @return the price in dollar currency;
      */
-    public static double getRawPrice(WeightPrice price, Float quantity, String unit) {
-        return 0;
+    public static double getRawPrice(WeightPrice price, Float quantity, WeightUnit unit) throws IllegalConversionException {
+        return price.getValue() * getConvertor(unit, price.getUnit()).apply(quantity);
     }
 
     /**
@@ -25,7 +29,7 @@ public class PricingService {
      * @return the price in dollar currency;
      */
     public static double getRawPrice(UnitPrice price, Integer quantity) {
-        return 0;
+        return price.getValue() * quantity;
     }
 
 

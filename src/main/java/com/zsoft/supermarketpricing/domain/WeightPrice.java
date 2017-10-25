@@ -1,14 +1,15 @@
 package com.zsoft.supermarketpricing.domain;
 
 public class WeightPrice extends Price {
-    private final String unit;
 
-    public WeightPrice(double value, String unit) {
+    private final WeightUnit unit;
+
+    public WeightPrice(double value, WeightUnit unit) {
         super(value);
         this.unit = unit;
     }
 
-    public String getUnit() {
+    public WeightUnit getUnit() {
         return unit;
     }
 
