@@ -1,6 +1,5 @@
 package com.zsoft.supermarketpricing.service;
 
-import com.zsoft.supermarketpricing.domain.WeightPrice;
 import com.zsoft.supermarketpricing.domain.WeightUnit;
 import com.zsoft.supermarketpricing.exception.IllegalConversionException;
 
