@@ -7,6 +7,8 @@ import com.zsoft.supermarketpricing.domain.WeightPrice;
 import com.zsoft.supermarketpricing.domain.WeightUnit;
 import com.zsoft.supermarketpricing.exception.IllegalConversionException;
 
+import java.util.Collection;
+
 import static com.zsoft.supermarketpricing.service.UnitService.getConvertor;
 
 
@@ -73,6 +75,62 @@ public class PricingService {
         int div = (int) (quantity / discount.getQuantity());
         int rest = (int) (quantity % discount.getQuantity());
         return div * discount.getPrice() + rest * price.getValue();
+    }
+
+
+    /**
+     * Computes the price using the given collection of discounts;
+     *
+     * @param price    The unit price
+     * @param quantity the Quantity
+     * @return the minimum price in dollar currency;
+     */
+    public static float getDiscountsPrice(UnitPrice price, Integer quantity, Collection<Discount> discounts) {
+
+        return 0f;
+    }
+
+
+    /**
+     * Computes the price using the given collection of discounts;
+     *
+     * @param price    The unit price
+     * @param quantity the Quantity
+     * @param unit     the  unit of the quantity
+     * @return the minimum price in dollar currency;
+     */
+
+    public static float getDiscountsPrice(WeightPrice price, Float quantity, WeightUnit unit, Collection<Discount> discounts) throws IllegalConversionException {
+
+        return 0f;
+    }
+
+
+    /**
+     * Computes the minimum global price by exploring all discounts combinations;
+     *
+     * @param price    The unit price
+     * @param quantity the Quantity
+     * @return the minimum price in dollar currency;
+     */
+    public static Float getTheMinPrice(UnitPrice price, Integer quantity, Collection<Discount> discounts) {
+
+        return 0f;
+
+    }
+
+
+    /**
+     * Computes the minimum global price by exploring all discounts combinations;
+     *
+     * @param price    The unit price
+     * @param quantity the Quantity
+     * @param unit     the unit of the quantity
+     * @return the minimum price in dollar currency;
+     */
+
+    public static Float getTheMinPrice(WeightPrice price, Float quantity, WeightUnit unit, Collection<Discount> discounts) throws IllegalConversionException {
+        return 0f;
     }
 
 

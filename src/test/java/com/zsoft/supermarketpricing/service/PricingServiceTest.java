@@ -38,7 +38,6 @@ public class PricingServiceTest {
     @Test
     public void getDiscountPrice() throws Exception {
 
-
         assertEquals("Five units costs 2 Dollars: 1 Dollar (threeForOne discount) + 1 Dollar ( 2 units) ",
                 2f, PricingService.getDiscountPrice(new UnitPrice(0.5f), 5, threeForOne), Double.MIN_VALUE);
         assertEquals("Three units costs 1 Dollar: threeForOne discount selected",
@@ -54,6 +53,52 @@ public class PricingServiceTest {
         assertEquals("96 Ounce costs 1.5 Dollar: 96 Ounce equals 6 Pounds, the sixForOneAndHalf discount selected",
                 1.5f, PricingService.getDiscountPrice(new WeightPrice(1f, WeightUnit.POUND), 96f, WeightUnit.OUNCE, sixForOneAndHalf), Double.MIN_VALUE);
 
+
     }
+
+
+    @Test
+    public void getDiscountsPriceTest() throws Exception {
+
+
+        assertEquals("Five units costs 2 Dollars: 1 Dollar (threeForOne discount) + 1 Dollar ( 2 units) ",
+                2f, PricingService.getDiscountsPrice(new UnitPrice(0.5f), 5, discounts), Double.MIN_VALUE);
+        assertEquals("Three units costs 1 Dollar: threeForOne discount selected",
+                1f, PricingService.getDiscountsPrice(new UnitPrice(0.5f), 3, discounts), Double.MIN_VALUE);
+        assertEquals("Six units costs 1.5 Dollars: sixForOneAndHalf discount selected",
+                1.5f, PricingService.getDiscountsPrice(new UnitPrice(0.5f), 6, discounts), Double.MIN_VALUE);
+
+
+        assertEquals("32 Ounce costs 2 Dollars: 32 Ounce equals 2 Pounds, each costs 1 Dollar (No discount selected)",
+                2f, PricingService.getDiscountsPrice(new WeightPrice(1f, WeightUnit.POUND), 32f, WeightUnit.OUNCE, discounts), Double.MIN_VALUE);
+        assertEquals("48 Ounce costs 1 Dollar: 48 Ounce equals 3 Pounds, the threeForOne discount selected",
+                1f, PricingService.getDiscountsPrice(new WeightPrice(1f, WeightUnit.POUND), 48f, WeightUnit.OUNCE, discounts), Double.MIN_VALUE);
+        assertEquals("96 Ounce costs 1.5 Dollar: 96 Ounce equals 6 Pounds, the sixForOneAndHalf discount selected",
+                1.5f, PricingService.getDiscountsPrice(new WeightPrice(1f, WeightUnit.POUND), 96f, WeightUnit.OUNCE, discounts), Double.MIN_VALUE);
+
+
+    }
+
+    @Test
+    public void getTheMinPriceTest() throws Exception {
+
+        assertEquals("The best price is 2 Dollars: 1 Dollar (threeForOne discount) + 1 Dollar ( 2 units) ",
+                2f, PricingService.getTheMinPrice(new UnitPrice(0.5f), 5, discounts), Double.MIN_VALUE);
+        assertEquals("The best price is 1 Dollar: threeForOne discount selected",
+                1f, PricingService.getTheMinPrice(new UnitPrice(0.5f), 3, discounts), Double.MIN_VALUE);
+        assertEquals("The best price is 1.5 Dollars: sixForOneAndHalf discount selected",
+                1.5f, PricingService.getTheMinPrice(new UnitPrice(0.5f), 6, discounts), Double.MIN_VALUE);
+
+
+        assertEquals("The best price is 2 Dollars: 32 Ounce equals 2 Pounds, each costs 1 Dollar (No discount selected)",
+                2f, PricingService.getTheMinPrice(new WeightPrice(1f, WeightUnit.POUND), 32f, WeightUnit.OUNCE, discounts), Double.MIN_VALUE);
+        assertEquals("The best price is 1 Dollar: 48 Ounce equals 3 Pounds, the threeForOne discount selected",
+                1f, PricingService.getTheMinPrice(new WeightPrice(1f, WeightUnit.POUND), 48f, WeightUnit.OUNCE, discounts), Double.MIN_VALUE);
+        assertEquals("The best price is 1.5 Dollar: 96 Ounce equals 6 Pounds, the sixForOneAndHalf discount selected",
+                1.5f, PricingService.getTheMinPrice(new WeightPrice(1f, WeightUnit.POUND), 96f, WeightUnit.OUNCE, discounts), Double.MIN_VALUE);
+
+
+    }
+
 
 }
