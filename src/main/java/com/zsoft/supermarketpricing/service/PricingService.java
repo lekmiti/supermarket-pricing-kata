@@ -8,7 +8,10 @@ import com.zsoft.supermarketpricing.domain.WeightUnit;
 import com.zsoft.supermarketpricing.exception.IllegalConversionException;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
+import static com.zsoft.supermarketpricing.service.PowerSetService.powerSet;
 import static com.zsoft.supermarketpricing.service.UnitService.getConvertor;
 
 
@@ -87,7 +90,12 @@ public class PricingService {
      */
     public static float getDiscountsPrice(UnitPrice price, Integer quantity, Collection<Discount> discounts) {
 
-        return 0f;
+        Float sum = 0f;
+        for (Discount discount : discounts) {
+            sum = sum + getDiscountPrice(price, quantity, discount);
+        }
+
+        return sum;
     }
 
 
@@ -102,7 +110,11 @@ public class PricingService {
 
     public static float getDiscountsPrice(WeightPrice price, Float quantity, WeightUnit unit, Collection<Discount> discounts) throws IllegalConversionException {
 
-        return 0f;
+        Float sum = 0f;
+        for (Discount discount : discounts) {
+            sum = sum + getDiscountPrice(price, quantity, unit, discount);
+        }
+        return sum;
     }
 
 
@@ -115,7 +127,16 @@ public class PricingService {
      */
     public static Float getTheMinPrice(UnitPrice price, Integer quantity, Collection<Discount> discounts) {
 
-        return 0f;
+        Set<Discount> discountsSet = new HashSet<Discount>(discounts);
+        Set<Set<Discount>> subDiscountSets = powerSet(discountsSet);
+
+        Float minPrice = 10000000000f;
+
+        for (Set<Discount> discountSet : subDiscountSets) {
+            Float discountsPrice = getDiscountsPrice(price, quantity, discountSet);
+            minPrice = (discountsPrice < minPrice) ? discountsPrice : minPrice;
+        }
+        return minPrice;
 
     }
 
@@ -130,7 +151,16 @@ public class PricingService {
      */
 
     public static Float getTheMinPrice(WeightPrice price, Float quantity, WeightUnit unit, Collection<Discount> discounts) throws IllegalConversionException {
-        return 0f;
+        Set<Discount> discountsSet = new HashSet<Discount>(discounts);
+        Set<Set<Discount>> subDiscountSets = powerSet(discountsSet);
+
+        Float minPrice = 10000000000f;
+
+        for (Set<Discount> discountSet : subDiscountSets) {
+            Float discountsPrice = getDiscountsPrice(price, quantity, unit, discountSet);
+            minPrice = (discountsPrice < minPrice) ? discountsPrice : minPrice;
+        }
+        return minPrice;
     }
 
 
